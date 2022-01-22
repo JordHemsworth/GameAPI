@@ -3,13 +3,13 @@
 @section('content')
 
     <div class="container mx-auto px-4">
-        <div class="game-details border-b border-gray-800 pb-12 flex">
+        <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
                 <img src="/images/mw2.png" alt="cover">
             </div>
 
-            <div class="ml-12 mr-64">
-                <h2 class="font-semibold text-4xl"> Modern Warfare 2</h2>
+            <div class="lg:ml-12 lg:mr-64">
+                <h2 class="font-semibold text-4xl leading-tight mt-2"> Modern Warfare 2</h2>
                 <div class="text-gray-400">
                     <span>Shooter, FPS</span>
                     &middot;                                    {{-- Separate genres and publishers with mid dot. --}}
@@ -26,15 +26,15 @@
                         <div class="ml-4 text-xs"> Member <br> Score </div>
                     </div>
 
-                    <div class="flex items-center ml-12">
-                        <div class="w-16 h-16 bg-gray-800 rounded-full">
+                    <div class="flex items-center ml-6">
+                        <div class="w-16 h-16 bg-gray-800 rounded-full ml-4">
                             <div class="font-semibold text-xs flex justify-center items-center h-full">97%</div>        
                         </div>
                         <div class="ml-4 text-xs"> Critic <br> Score </div>
                     </div>
 
-                    <div class="flex items-center space-x-4 ml-12">
-                        <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
+                    <div class="flex items-center space-x-4 mt-6 md:mt-4 lg:mt-0 lg:ml-8">
+                        <div class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">
                             <a href="" class="hover:text-gray-400">
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 16 18" fill="none"><g clip-path="url(#clip0)"><path d="M8.004 4.957c-2.272 0-4.104 1.804-4.104 4.04 0 2.235 1.832 
                                     4.039 4.104 4.039 2.271 0 4.103-1.804 4.103-4.04 0-2.235-1.832-4.039-4.103-4.039zm0 6.666c-1.468 0-2.668-1.178-2.668-2.627 0-1.448 1.196-2.626 2.668-2.626 1.471 
@@ -72,7 +72,6 @@
 
                     <div class="mt-12">
                         <button class="flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
-                            
                             <span class="ml-4"> Play Trailer </span>  
                             <a href="" class="hover:text-gray-400">
                                 <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 
@@ -81,14 +80,12 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div> {{-- End game details --}}
 
         <div class="images-container border-b border-gray-800 pb-12 mt-8">
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
-                <div class="grid grid-cols-3 gap-12 mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
                     <div>
                         <a href="#">
                             <img src="/images/mwSS1.jpg" alt="screenshot" class="hover:opacity-75 transition ease-in-out duration-150">
@@ -107,16 +104,13 @@
 
                         </a>
                     </div>
-
                 </div>
-
-
         </div> {{-- End images container --}}
 
         <div class="similar-games-container border-b border-gray-800 pb-6 mt-8">
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Similar Games </h2>
 
-            <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12">                                          {{-- Create a 6 wide grid used to display all covers --}}
+            <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">                                          {{-- Create a 6 wide grid used to display all covers --}}
                 <div class="game mt-8">
                     <div class="relative inline-block">
                         <a href="#">
@@ -219,7 +213,7 @@
                     <div class="text-gray-400 mt-1 ">Xbox 360</div>
                 </div>    
     
-            </div> {{-- End of Popular Games --}}
+            </div>
         </div> {{-- End similar games --}}
 
     </div>
