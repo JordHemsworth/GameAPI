@@ -9,21 +9,21 @@
 
 <body class="bg-gray-900 text-white">
     <header class="border-b border-gray-800">
-        <nav class="contain mx-auto flex items-center justify-between px-4 py-y">
+        <nav class="contain mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-y">
 
-            <div class="flex items-centre">
+            <div class="flex flex-col lg:flex-row items-centre mt-2 mb-5">
                 <a href="/">
-                    <img src="/" alt="logo" class="w-32 flex-none">
+                    <img src="/images/ubisoft.png" alt="logo" class="w-32 flex-none">
                 </a>
 
-                <ul class="flex ml-16 space-x-8">
+                <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-10">
                     <li><a href="#" class="hover:text-gray-400"> Games </a></li>
                     <li><a href="#" class="hover:text-gray-400"> Reviews </a></li>
                     <li><a href="#" class="hover:text-gray-400"> Coming Soon </a></li>
                 </ul>
             </div>
 
-            <div class="flex items-center">
+            <div class="flex items-center mt-6 lg:mt-0">
                 <div class="relative">  
                     <input type="text" class="bg-gray-800 text-sm rounded-full w-64 px-3 py-1" placeholder="Search...">             {{-- TODO add search icon svg --}}
                     
