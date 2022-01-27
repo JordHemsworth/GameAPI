@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 
-
+*/
 Route::get('/show', function () {
     return view('show');
-}); */
+}); 
