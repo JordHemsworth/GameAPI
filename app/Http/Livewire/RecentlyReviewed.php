@@ -32,13 +32,7 @@ class RecentlyReviewed extends Component
                     'text/plain'
                 )
                 ->post('https://api.igdb.com/v4/games')->json();
-
-                dd($this->recentlyReviewed);
         });
-
-     
-         
-
             
     }
 
