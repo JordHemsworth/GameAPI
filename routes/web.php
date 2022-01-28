@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\GamesController@index')->name('games.index');
 
-/* 
 
-Route::get('/', function () {
-    return view('index');
+
+Route::get('/w', function () {
+    return view('welcome');
 });
 
 
-*/
+
 Route::get('/show', function () {
     return view('show');
 }); 

@@ -11,7 +11,7 @@
     </head>
 
     <body class="bg-gray-900 text-white">
-        
+     
         <header class="border-b border-gray-800">
             <nav class="contain mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-y">
                 <div class="flex flex-col lg:flex-row items-centre mt-2 mb-5">
