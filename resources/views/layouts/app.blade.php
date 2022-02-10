@@ -32,11 +32,6 @@
                         {{-- TODO add search icon svg --}}
 
                     </div>
-
-                    <div class="ml-6">
-                        <a href="#"><img src="/avatar.jpg" alt="avatar" class="rounded-full w-8">
-                        </a>
-                    </div>
                 </div>
             </nav>
         </header>

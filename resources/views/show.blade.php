@@ -6,7 +6,7 @@
     <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
         <div class="flex-none">
             @if ( isset($game['cover']) )
-                <img src="{{ isset($game['cover']) ?  Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : '#'}}"
+                <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
                 alt="Cover not found" class="hover:opacity-75 transition ease-in-out duration-150">
             @else
                 <img src="/images/nocover.png">
@@ -14,10 +14,9 @@
         </div>
 
         <div class="lg:ml-12 lg:mr-64">
-            <h2 class="font-semibold text-4xl leading-tight mt-2"> {{$game['name']}} </h2>
+            <h2 class="font-semibold text-4xl leading-tight mt-2"> {{ $game['name'] }} </h2>
             <div class="text-gray-400">
                 <span>
-
                     @if (isset($game['genres']))                        {{-- If Genre it set, list all Genres else advise missing --}}
                         @foreach ($game['genres'] as $genre )
                             {{ $genre['name'] }},
@@ -25,12 +24,11 @@
                     @else
                         Genre Missing
                     @endif
-
                 </span>
                 &middot; {{-- Separate genres and publishers with mid dot. --}}
-                {{-- <span> {{ $game['involved_companies'][0]['company']['name']}} </span> DONT WORK
+                {{--  <span> {{ $game['involved_companies'][0]['company']['name']}} </span> --}}
                 
-                --}} Companies
+                
                 &middot;
                 <span>
                     @foreach ($game['platforms'] as $platform)
@@ -48,7 +46,6 @@
                         <div class="font-semibold text-xs flex justify-center items-center h-full">
                             @if (array_key_exists('rating', $game))
                                 {{ round($game['rating']).'%' }}
-                                &middot;
                             @else
                                 0%
                             @endif
@@ -61,8 +58,7 @@
                     <div class="w-16 h-16 bg-gray-800 rounded-full ml-4">
                         <div class="font-semibold text-xs flex justify-center items-center h-full">
                             @if (array_key_exists('aggregated_rating', $game))
-                            {{ round($game['aggregated_rating'].'%') }}
-                            &middot;
+                            {{ ($game['aggregated_rating'].'%') }}
                         @else
                             0%
                         @endif
@@ -73,8 +69,7 @@
                 </div>
 
                 <div class="flex items-center space-x-4 mt-6 md:mt-4 lg:mt-0 lg:ml-8">
-                    <div
-                        class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">
+                    <div class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">
                         <a href="" class="hover:text-gray-400">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 16 18" fill="none">
                                 <g clip-path="url(#clip0)">
@@ -119,16 +114,17 @@
                         </a>
                     </div>
                 </div>
-                <p class="mt-12">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla laudantium, vero optio error
-                    voluptas aliquam?
-                    Sint repellat modi fugit totam animi rem provident unde exercitationem! Doloremque aperiam possimus
-                    numquam consequuntur?
-
+                <p class="mt-12"> 
+                    @if (array_key_exists('summary', $game))
+                        {{ $game['summary'] }}
+                    @else
+                        Duis ex aliquip id aliquip qui. Pariatur officia non eiusmod excepteur eiusmod cillum dolore deserunt aute deserunt id pariatur id pariatur. 
+                        Veniam aliqua dolor tempor minim nisi reprehenderit minim nostrud.
+                    @endif
                 </p>
 
                 <div class="mt-12">
-                    <button class="flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
+                    {{-- <button class="flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
                         <span class="ml-4"> Play Trailer </span>
                         <a href="" class="hover:text-gray-400">
                             <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24">
@@ -138,7 +134,23 @@
                                 </path>
                             </svg>
                         </a>
-                    </button>
+                    </button> --}}
+
+                    @if (array_key_exists('videos', $game))
+                        <a href="https://www.youtube.com/watch/{{ $game['videos'][0]['video_id']}}" class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
+                            <span class="ml-4"> Play Trailer </span>
+                            <a href="" class="hover:text-gray-400">
+                                <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 
+                                        10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </a>
+                    
+                    @endif
+                  
                 </div>
             </div>
         </div>
@@ -146,149 +158,72 @@
 
     <div class="images-container border-b border-gray-800 pb-12 mt-8">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-            <div>
-                <a href="#">
-                    <img src="/images/mwSS1.jpg" alt="screenshot"
-                        class="hover:opacity-75 transition ease-in-out duration-150">
-
-                </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
+            
+                @if (array_key_exists('screenshots', $game))
+                    @foreach ($game['screenshots'] as $screenshot)
+                        <div>
+                            <a href="{{Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url'])}}">
+                                <img src="{{Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url'])}}" alt="screenshot"
+                                    class="hover:opacity-75 transition ease-in-out duration-150">
+                            </a>
+                        </div>
+                    @endforeach       
+                @else
+                    No Screenshots Currently Available!    
+                @endif
+            
             </div>
-            <div>
-                <a href="#">
-                    <img src="/images/mwSS2.jpg" alt="screenshot"
-                        class="hover:opacity-75 transition ease-in-out duration-150">
-
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <img src="/images/mwSS3.jpg" alt="screenshot"
-                        class="hover:opacity-75 transition ease-in-out duration-150">
-
-                </a>
-            </div>
-        </div>
     </div> {{-- End images container --}}
+    
 
     <div class="similar-games-container border-b border-gray-800 pb-6 mt-8">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Similar Games </h2>
 
-        <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide
-            grid used to display all covers --}}
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/mw2.png" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64 ">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
+        <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide grid used to display all covers --}}
+            
+            @if (array_key_exists('similar_games', $game))
+                @foreach ($game['similar_games'] as $game)
+                    <div class="game mt-8">
+                        <div class="relative inline-block">
+                            @if ( isset($game['cover']) ) 
+                                <a href="{{ route('games.show', $game['slug']) }}">
+                                    <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}" alt="game cover"
+                                        class="hover:opacity-75 transition ease-in-out duration-150 w-64 ">
+                                </a>
+                            @else
+                                <img src="/images/nocover.png">
+                            @endif
+                           
+                      
+                            @if (isset($game['rating']))
+                                <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
+                                    style="right:-20px; bottom:-20px">
+                                    <div class="font-semibold text-xs flex justify-center items-center h-full">
+                                        {{round($game['rating']).'%'}}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    Modern Warfare 2
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div> {{-- End of one game card --}}
 
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/doom.jpg" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    DOOM
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div>
+                        <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
+                            {{$game['name']}}
+                        </a>
 
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/bioshock.jpg" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
+                        <div class="text-gray-400 mt-1 ">
+                            @if (array_key_exists('platforms', $game))
+                               @foreach ($game['platforms'] as $platform)
+                                    @if (array_key_exists('abbreviation', $platform))
+                                        {{$platform['abbreviation']}}
+                                        &middot;
+                                    @endif
+                                @endforeach  
+                            @endif
+                           
                         </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    Bioshock Infinite
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div>
-
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/tombraider.jpg" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    Tomb Raider
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div>
-
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/farcry3.jpg" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    Far Cry 3
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div>
-
-            <div class="game mt-8">
-                <div class="relative inline-block">
-                    <a href="#">
-                        <img src="images/reddead.jpg" alt="game cover"
-                            class="hover:opacity-75 transition ease-in-out duration-150 w-64">
-                    </a>
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                        style="right:-20px; bottom:-20px">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            99%
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                    Read Dead Redemption
-                </a>
-                <div class="text-gray-400 mt-1 ">Xbox 360</div>
-            </div>
+                    </div> {{-- End of one game card --}}
+                @endforeach
+            @endif
 
         </div>
     </div> {{-- End similar games --}}
