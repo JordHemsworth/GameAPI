@@ -2,8 +2,12 @@
     @forelse ($comingSoon as $game)
         <div class="game flex mb-8">
             <a href="#">
-                <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}" alt="game cover"
-                    class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                @if ( isset($game['cover']) )
+                        <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
+                        alt="Cover not found" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                @else
+                        <img src="/images/nocover.png" class="w-16">
+                @endif
             </a>
             <div class="ml-4">
                 <a href='#' class="hover:text-gray-300"> {{$game['name']}} </a>
@@ -21,5 +25,8 @@
                 </div>
             </div>
         @endforeach
+
     @endforelse
+
+
 </div>

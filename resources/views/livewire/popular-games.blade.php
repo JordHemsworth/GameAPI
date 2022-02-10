@@ -2,10 +2,13 @@
     @forelse ($popularGames as $game)
         <div class="game mt-8">
             <div class="relative inline-block">
-                <a href="/show">
-                    <img src="{{ isset($game['cover']) ?  Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : '#'}}"
-                        alt="game cover" {{-- If the game has a cover, fix the size to 'cover_big' and get URL. --}}
-                        class="hover:opacity-75 transition ease-in-out duration-150 w-64">
+                <a href="{{ route('games.show', $game['slug']) }}">
+                    @if ( isset($game['cover']) )
+                        <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
+                        alt="Cover not found" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
+                    @else
+                        <img src="/images/nocover.png" class="w-48">
+                    @endif
                 </a>
                 @if (isset($game['rating']))
                     <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right:-20px; bottom:-20px">
@@ -15,7 +18,7 @@
                     </div>
                 @endif
             </div>
-            <a href="/show" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
+            <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
                 {{$game['name']}}
             </a>
 

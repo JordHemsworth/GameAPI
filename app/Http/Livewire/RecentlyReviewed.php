@@ -23,7 +23,7 @@ class RecentlyReviewed extends Component
                 'Authorization' => env('IGDB_AUTH'),
             ])        
                 ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
-                    'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, rating_count, summary;                                           
+                    'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, rating_count, summary, slug;                                           
                     where platforms = (48,49,130,6)
                     & ( first_release_date >= '.$before.' 
                     & first_release_date < '.$current.');

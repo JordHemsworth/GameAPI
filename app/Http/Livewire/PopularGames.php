@@ -25,7 +25,7 @@ class PopularGames extends Component
                 'Authorization' => env('IGDB_AUTH'),
             ])        
                 ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
-                    'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating;                                           
+                    'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;                                           
                     where platforms = (48,49,130,6)
                     & ( first_release_date >= '.$before.' 
                     & first_release_date <= '.$after.');
@@ -35,7 +35,6 @@ class PopularGames extends Component
                 )
                 ->post('https://api.igdb.com/v4/games')->json();
         });
-        
      
 
     }

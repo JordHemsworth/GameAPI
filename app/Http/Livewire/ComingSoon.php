@@ -19,7 +19,7 @@ class ComingSoon extends Component
                 'Authorization' => env('IGDB_AUTH'),
             ])
                 ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
-                    'fields name, cover.url, rating, first_release_date ;                                           
+                    'fields name, cover.url, rating, first_release_date, slug ;                                           
                         where rating != null;
                         sort rating desc;
                         limit 3;',

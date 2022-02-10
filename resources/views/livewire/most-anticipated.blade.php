@@ -2,13 +2,20 @@
     @forelse ($mostAnticipated as $game)
         <div class="game flex">
             <a href="#">
-                <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}" alt="game cover"
-                    class="w-16 hover:opacity-75 transition ease-in-out duration-150 flex-none">
+                @if ( isset($game['cover']) )
+                        <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
+                        alt="Cover not found" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                    @else
+                        <img src="/images/nocover.png" class="w-16">
+                    @endif
             </a>
             <div class="ml-4">
-                <a href='#' class="hover:text-gray-300" > {{$game['name']}} </a>
+                <a href="{{ route('games.show', $game['slug']) }}" class="hover:text-gray-300 flex-1" > 
+                    {{$game['name']}} 
+                </a>
                 <div class="text-gray-400 tx-sm mt-1"> {{
-                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} </div>
+                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} 
+                </div>
             </div>
         </div>
     @empty
