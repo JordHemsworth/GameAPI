@@ -13,8 +13,8 @@
                 <a href="{{ route('games.show', $game['slug']) }}" class="hover:text-gray-300 flex-1" > 
                     {{$game['name']}} 
                 </a>
-                <div class="text-gray-400 tx-sm mt-1"> {{
-                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} 
+                <div class="text-gray-400 tx-sm mt-1">
+                   {{$game['releaseDate']}} 
                 </div>
             </div>
         </div>

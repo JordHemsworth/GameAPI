@@ -186,10 +186,11 @@
                 @foreach ($game['similar_games'] as $game)
                     <div class="game mt-8">
                         <div class="relative inline-block">
+                            
                             @if ( isset($game['cover']) ) 
                                 <a href="{{ route('games.show', $game['slug']) }}">
                                     <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}" alt="game cover"
-                                        class="hover:opacity-75 transition ease-in-out duration-150 w-64 ">
+                                        class="hover:opacity-75 transition ease-in-out duration-150 w-48 h-64">
                                 </a>
                             @else
                                 <img src="/images/nocover.png">
