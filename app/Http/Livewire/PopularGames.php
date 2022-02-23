@@ -25,12 +25,13 @@ class PopularGames extends Component
                 'Client-ID' => env('IGDB_KEY'),
                 'Authorization' => env('IGDB_AUTH'),
             ])        
-                ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
+                ->withBody(                                                     /* Updated to show recently released games that are popular. */
                     'fields name, cover, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;                                           
                     where platforms = (48,49,130,6)
                     & ( first_release_date >= '.$before.' 
-                    & first_release_date <= '.$after.');
-                    sort rating desc;
+                    & first_release_date <= '.$after.')
+                    & total_rating_count > 2;
+                    sort total_rating_count desc;
                     limit 12;',
                     'text/plain'
                 )
