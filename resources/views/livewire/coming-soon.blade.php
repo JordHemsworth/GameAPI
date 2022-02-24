@@ -10,9 +10,19 @@
                 @endif
             </a>
             <div class="ml-4">
-                <a href='#' class="hover:text-gray-300"> {{$game['name']}} </a>
+                @if ( isset($game['name']) )
+                    <a href='#' class="hover:text-gray-300"> {{$game['name']}} </a>
+                @else
+                    <p>broke</p>
+                @endif
+
+                @if ( isset($game['first_release_date']) )
                 <div class="text-gray-400 tx-sm mt-1">{{
-                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} </div>
+                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} 
+                </div>
+                @endif
+             
+                
             </div>
         </div>
     @empty

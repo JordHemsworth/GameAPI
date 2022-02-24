@@ -16,7 +16,7 @@
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Most Anticipated</h2>
                 <livewire:most-anticipated>
 
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold mt-12"> Upcoming Games</h2>
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold mt-12"> Coming Soon</h2>
                 <livewire:coming-soon>
                     
         </div> {{-- End of Upcoming / Most Anticpated --}}

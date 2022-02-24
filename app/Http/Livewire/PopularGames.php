@@ -16,7 +16,7 @@ class PopularGames extends Component
     public function load()
     {
         
-        $before = Carbon::now()->subMonths(2)->timestamp;
+        $before = Carbon::now()->subMonths(4)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
         $popularGamesUnformatted = Cache::remember('popular-games', 7, function () use($before, $after) {
