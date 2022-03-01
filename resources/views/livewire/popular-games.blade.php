@@ -4,7 +4,7 @@
             <div class="relative inline-block">
                 <a href="{{ route('games.show', $game['slug']) }}">
                     @if ( isset($game['cover']) )
-                        <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
+                        <img src="{{$game['coverImageUrl']}}"
                         alt="Cover not found" class="w-48 h-64 hover:opacity-75 transition ease-in-out duration-150 ">
                     @else
                         <img src="/images/nocover.png" class="w-48">
@@ -18,8 +18,8 @@
                         </div>
                     </div>
                 @endif
-
             </div>
+
             <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8 max-h-5 text-ellipsis">
                 {{$game['name']}}
             </a>
@@ -27,8 +27,8 @@
             <div class="text-gray-400 mt-1 ">
                 {{$game['platforms']}}
             </div>
-
         </div> {{-- End of one game card --}}
+        
     @empty
         @foreach (range(1,12) as $game) {{-- Load skeleton games before the API loads in --}}
             <div class="game mt-8">

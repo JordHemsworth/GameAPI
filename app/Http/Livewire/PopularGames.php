@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -37,10 +36,11 @@ class PopularGames extends Component
                 )
                 ->post('https://api.igdb.com/v4/games')->json();
 
-
         });
 
-        $this->popularGames = $this->formatForView($popularGamesUnformatted);
+        
+
+        $this->popularGames = $this->formatForView($popularGamesUnformatted);       //Save to PopularGames array once the data has been formatted.
 
     }
 
@@ -53,11 +53,10 @@ class PopularGames extends Component
     private function formatForView($games)
     {
         return collect($games)->map(function ($game){
-            return collect($game)->merge([                                                          //Merge the collections to allow for Formatting the data.
+            return collect($game)->merge([                                                          //Specify the fields wish to Merge for Formatting
                 'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
                 'platforms' => collect($game['platforms'])->implode('abbreviation', ', '),          
-
-                //'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),            Getting Undefined Array Key for Cover, Unsure why.
+                'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),           // Replace the Thumb image passed through with a larger cover. Unsure why works now.
             ]);                                     
         })->toArray();
 

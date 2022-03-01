@@ -45,23 +45,22 @@ class GamesController extends Controller
         abort_if(!$game, 404);                                               /* If the game or url does not exist show 404 */
 
         return view('show', [
-            'game' => $game[0],
+            'game' => $this->formatGameForView($game[0]),
         ]);
     }
 
-  /*   private function formatGameForView($game)
+    private function formatGameForView($game)
     {
             return collect($game)->merge([
-                'genres' => collect($game['genres'])->pluck('name')->implode(', '),
+                'genres' => collect($game['genres'])->implode('name', ', '),  
                 //'involvedCompanies' => $game['involved_companies'][0]['company']['name'],
-                'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
-                'memberRating' => array_key_exists('rating', $game) ? round($game['rating']) : '0',
-                'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']) : '0',
-                'trailer' => 'https://youtube.com/embed/'.$game['videos'][0]['video_id'],
+                'platforms' => collect($game['platforms'])->implode('abbreviation', ', '),     
+                //'memberRating' => array_key_exists('rating', $game) ? round($game['rating']) : '0',
+                //'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']) : '0',
+                //'trailer' => 'https://youtube.com/embed/'.$game['videos'][0]['video_id'],
 
             ]); 
     }            
- */
-
+          
     
 }     

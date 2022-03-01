@@ -14,10 +14,10 @@ class ComingSoon extends Component
 
     public function load()
     {
-        $now = Carbon::now()->addWeeks(1)->timestamp;
+        $now = Carbon::now()->timestamp;
+        $oneMonth = Carbon::now()->addMonth(1)->timestamp;
         
-        
-        $this->comingSoon = Cache::remember('coming-soon', 5, function () use ($now, ) {
+        $comingSoonUnformatted = Cache::remember('coming-soon', 5, function () use ($now, $oneMonth) {
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
                 'Client-ID' => env('IGDB_KEY'),
                 'Authorization' => env('IGDB_AUTH'),
@@ -25,8 +25,9 @@ class ComingSoon extends Component
                 ->withBody(                                                     /* Get 3 games that are close to release. */
                     'fields name, cover.url, rating, first_release_date, slug ;                                           
                         where platforms = (48,49,130,6)
-                        & first_release_date > '.$now.';  
-                        sort first_release_date asc;
+                        & (first_release_date > '.$now.'
+                        & first_release_date <= '.$oneMonth.');  
+                        sort rating asc;                                      
                         limit 3;',
                     'text/plain'
                 )
@@ -34,10 +35,21 @@ class ComingSoon extends Component
         });
 
        // dd($this->comingSoon);
+
+       $this->comingSoon = $this->formatForView($comingSoonUnformatted);
     }
 
     public function render()
     {
         return view('livewire.coming-soon');
+    }
+
+    private function formatForView($games)
+    {
+        return collect($games)->map(function ($game) {
+            return collect($game)->merge([
+                'releaseDate' => Carbon::parse($game['first_release_date'])->format('M d, Y'),
+            ]);
+        })->toArray();
     }
 }

@@ -1,7 +1,7 @@
 <div wire:init="load" class="most-anticipated-container space-y-10 mt-6">
     @forelse ($mostAnticipated as $game)
         <div class="game flex">
-            <a href="#">
+            <a href="{{ route('games.show', $game['slug']) }}">
                 @if ( isset($game['cover']) )
                         <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
                         alt="Cover not found" class="w-16 hover:opacity-75 transition ease-in-out duration-150">

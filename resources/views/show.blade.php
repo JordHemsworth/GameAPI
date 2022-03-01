@@ -17,30 +17,26 @@
             <h2 class="font-semibold text-4xl leading-tight mt-2"> {{ $game['name'] }} </h2>
             <div class="text-gray-400">
                 <span>
-                    @if (isset($game['genres']))                        {{-- If Genre it set, list all Genres else advise missing --}}
-                        @foreach ($game['genres'] as $genre )
-                            {{ $genre['name'] }},
-                        @endforeach
+                    @if ($game['genres'])                       {{-- If Genre it set, list all Genres else advise missing --}}
+                        {{$game['genres']}}
                     @else
                         Genre Missing
                     @endif
                 </span>
-                &middot; {{-- Separate genres and publishers with mid dot. --}}
-                {{--  <span> {{ $game['involved_companies'][0]['company']['name']}} </span> --}}
-                
-                
                 &middot;
+                 {{-- Separate genres and publishers with mid dot. --}}
+                {{--  <span> {{ $game['involved_companies'][0]['company']['name']}} </span> --}}
+                      
                 <span>
-                    @foreach ($game['platforms'] as $platform)
-                        @if (array_key_exists('abbreviation', $platform))
-                            {{$platform['abbreviation']}}
-                            &middot;
-                        @endif
-                    @endforeach
+                    @if ($game['platforms'])                       {{-- If Genre it set, list all Genres else advise missing --}}
+                        {{$game['platforms']}}
+                    @else
+                        Platforms Missing
+                    @endif
                 </span>
             </div>
 
-            <div class="flex flex-wrap items-center mt-8 ">
+            {{-- <div class="flex flex-wrap items-center mt-8 ">
                 <div class="flex items-center">
                     <div class="w-16 h-16 bg-gray-800 rounded-full">
                         <div class="font-semibold text-xs flex justify-center items-center h-full">
@@ -66,7 +62,7 @@
                         </div>
                     </div>
                     <div class="ml-4 text-xs"> Critic <br> Score </div>
-                </div>
+                </div> --}}
 
                 <div class="flex items-center space-x-4 mt-6 md:mt-4 lg:mt-0 lg:ml-8">
                     <div class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">
@@ -115,12 +111,12 @@
                     </div>
                 </div>
                 <p class="mt-12"> 
-                    @if (array_key_exists('summary', $game))
+                 {{--    @if (array_key_exists('summary', $game))
                         {{ $game['summary'] }}
                     @else
                         Duis ex aliquip id aliquip qui. Pariatur officia non eiusmod excepteur eiusmod cillum dolore deserunt aute deserunt id pariatur id pariatur. 
                         Veniam aliqua dolor tempor minim nisi reprehenderit minim nostrud.
-                    @endif
+                    @endif --}}
                 </p>
 
                 <div class="mt-12">
@@ -136,7 +132,7 @@
                         </a>
                     </button> --}}
 
-                    @if (array_key_exists('videos', $game))
+                  {{--   @if (array_key_exists('videos', $game))
                         <a href="https://www.youtube.com/watch/{{ $game['videos'][0]['video_id']}}" class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
                             <span class="ml-4"> Play Trailer </span>
                             <a href="" class="hover:text-gray-400">
@@ -149,7 +145,7 @@
                             </a>
                         </a>
                     
-                    @endif
+                    @endif --}}
                   
                 </div>
             </div>
@@ -160,7 +156,7 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
             
-                @if (array_key_exists('screenshots', $game))
+                {{-- @if (array_key_exists('screenshots', $game))
                     @foreach ($game['screenshots'] as $screenshot)
                         <div>
                             <a href="{{Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url'])}}">
@@ -171,7 +167,7 @@
                     @endforeach       
                 @else
                     No Screenshots Currently Available!    
-                @endif
+                @endif --}}
             
             </div>
     </div> {{-- End images container --}}
@@ -180,7 +176,7 @@
     <div class="similar-games-container border-b border-gray-800 pb-6 mt-8">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Similar Games </h2>
 
-        <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide grid used to display all covers --}}
+        <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide grid used to display all covers 
             
             @if (array_key_exists('similar_games', $game))
                 @foreach ($game['similar_games'] as $game)
@@ -222,9 +218,9 @@
                             @endif
                            
                         </div>
-                    </div> {{-- End of one game card --}}
+                    </div> {{-- End of one game card
                 @endforeach
-            @endif
+            @endif  --}}
 
         </div>
     </div> {{-- End similar games --}}

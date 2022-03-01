@@ -10,19 +10,13 @@
                 @endif
             </a>
             <div class="ml-4">
-                @if ( isset($game['name']) )
-                    <a href='#' class="hover:text-gray-300"> {{$game['name']}} </a>
-                @else
-                    <p>broke</p>
-                @endif
+                <a href='{{ route('games.show', $game['slug']) }}' class="hover:text-gray-300"> 
+                    {{$game['name']}} 
+                </a>
 
-                @if ( isset($game['first_release_date']) )
-                <div class="text-gray-400 tx-sm mt-1">{{
-                    Carbon\Carbon::parse($game['first_release_date'])->format('M d, Y') }} 
+                <div class="text-gray-400 tx-sm mt-1">
+                    {{$game['releaseDate']}} 
                 </div>
-                @endif
-             
-                
             </div>
         </div>
     @empty
