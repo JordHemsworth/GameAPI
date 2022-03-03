@@ -5,46 +5,33 @@
 <div class="container mx-auto px-4">
     <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
         <div class="flex-none">
-            @if ( isset($game['cover']) )
-                <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}"
-                alt="Cover not found" class="hover:opacity-75 transition ease-in-out duration-150">
-            @else
-                <img src="/images/nocover.png">
-            @endif
-        </div>
 
+            @if ($game['cover'])
+                <img src="{{$game['coverImageUrl']}}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
+            @else
+                <img src="/images/nocover.png" class="w-48">
+            @endif 
+        </div>
+        
         <div class="lg:ml-12 lg:mr-64">
             <h2 class="font-semibold text-4xl leading-tight mt-2"> {{ $game['name'] }} </h2>
             <div class="text-gray-400">
-                <span>
-                    @if ($game['genres'])                       {{-- If Genre it set, list all Genres else advise missing --}}
+                <span>                    
                         {{$game['genres']}}
-                    @else
-                        Genre Missing
-                    @endif
                 </span>
-                &middot;
-                 {{-- Separate genres and publishers with mid dot. --}}
-                {{--  <span> {{ $game['involved_companies'][0]['company']['name']}} </span> --}}
-                      
-                <span>
-                    @if ($game['platforms'])                       {{-- If Genre it set, list all Genres else advise missing --}}
+                    &middot;     {{-- Separate genres and publishers with mid dot. --}}                   
+                <span>                  
                         {{$game['platforms']}}
-                    @else
-                        Platforms Missing
-                    @endif
                 </span>
+
+                {{--  <span> {{ $game['involved_companies'][0]['company']['name']}} </span>  Offset Array Error --}}
             </div>
 
-            {{-- <div class="flex flex-wrap items-center mt-8 ">
+             <div class="flex flex-wrap items-center mt-8 ">
                 <div class="flex items-center">
                     <div class="w-16 h-16 bg-gray-800 rounded-full">
                         <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            @if (array_key_exists('rating', $game))
-                                {{ round($game['rating']).'%' }}
-                            @else
-                                0%
-                            @endif
+                            {{$game['memberRating']}}
                         </div>
                     </div>
                     <div class="ml-4 text-xs"> Member <br> Score </div>
@@ -53,19 +40,15 @@
                 <div class="flex items-center ml-6">
                     <div class="w-16 h-16 bg-gray-800 rounded-full ml-4">
                         <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            @if (array_key_exists('aggregated_rating', $game))
-                            {{ ($game['aggregated_rating'].'%') }}
-                        @else
-                            0%
-                        @endif
-
+                            {{ $game['criticRating'] }}
                         </div>
                     </div>
                     <div class="ml-4 text-xs"> Critic <br> Score </div>
-                </div> --}}
+                </div> 
 
                 <div class="flex items-center space-x-4 mt-6 md:mt-4 lg:mt-0 lg:ml-8">
-                    <div class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">
+                   
+                    <div class="w-8 h-8 bg-gray-800 rounded-full flex flex-col lg:flex-row justify-center items-center ">         {{-- Instagram --}}
                         <a href="" class="hover:text-gray-400">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 16 18" fill="none">
                                 <g clip-path="url(#clip0)">
@@ -73,11 +56,11 @@
                                         d="M8.004 4.957c-2.272 0-4.104 1.804-4.104 4.04 0 2.235 1.832 
                                     4.039 4.104 4.039 2.271 0 4.103-1.804 4.103-4.04 0-2.235-1.832-4.039-4.103-4.039zm0 6.666c-1.468 0-2.668-1.178-2.668-2.627 0-1.448 1.196-2.626 2.668-2.626 1.471 
                                     0 2.667 1.178 2.667 2.626 0 1.449-1.2 2.627-2.667 2.627zm5.228-6.831a.948.948 0 01-.957.942.948.948 0 01-.957-.942.95.95 0 01.957-.942.95.95
-                                     0 01.957.942zm2.718.956c-.06-1.262-.354-2.38-1.293-3.301-.936-.921-2.071-1.21-3.353-1.273C9.982 1.1 6.02 1.1 4.7 1.174c-1.279.06-2.414.348-3.354 
-                                     1.27-.939.92-1.228 2.038-1.292 3.3-.075 1.301-.075 5.2 0 6.5.06 1.263.353 2.381 1.292 3.302.94.921 2.072 1.21 3.354 1.273 1.321.074 5.282.074 6.604 
-                                     0 1.282-.06 2.417-.348 3.353-1.273.936-.921 1.229-2.039 1.293-3.301.075-1.3.075-5.196 0-6.497zm-1.707 7.893a2.68 2.68 0 01-1.522 
-                                     1.497c-1.053.412-3.553.317-4.717.317-1.165 0-3.668.091-4.718-.317a2.68 2.68 0 01-1.522-1.497c-.418-1.037-.321-3.498-.321-4.645 0-1.146-.093-3.61.321-4.644a2.68 2.68 
-                                     0 011.522-1.497c1.053-.412 3.553-.317 4.718-.317 1.164 0 3.667-.091 4.717.317.7.274 1.24.805 1.522 1.497.418 1.037.321 3.498.321 4.644 0 1.147.097 3.611-.321 4.645z" />
+                                    0 01.957.942zm2.718.956c-.06-1.262-.354-2.38-1.293-3.301-.936-.921-2.071-1.21-3.353-1.273C9.982 1.1 6.02 1.1 4.7 1.174c-1.279.06-2.414.348-3.354 
+                                    1.27-.939.92-1.228 2.038-1.292 3.3-.075 1.301-.075 5.2 0 6.5.06 1.263.353 2.381 1.292 3.302.94.921 2.072 1.21 3.354 1.273 1.321.074 5.282.074 6.604 
+                                    0 1.282-.06 2.417-.348 3.353-1.273.936-.921 1.229-2.039 1.293-3.301.075-1.3.075-5.196 0-6.497zm-1.707 7.893a2.68 2.68 0 01-1.522 
+                                    1.497c-1.053.412-3.553.317-4.717.317-1.165 0-3.668.091-4.718-.317a2.68 2.68 0 01-1.522-1.497c-.418-1.037-.321-3.498-.321-4.645 0-1.146-.093-3.61.321-4.644a2.68 2.68 
+                                    0 011.522-1.497c1.053-.412 3.553-.317 4.718-.317 1.164 0 3.667-.091 4.717.317.7.274 1.24.805 1.522 1.497.418 1.037.321 3.498.321 4.644 0 1.147.097 3.611-.321 4.645z" />
                                 </g>
                                 <defs>
                                     <clipPath id="clip0">
@@ -85,10 +68,10 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </a>
-                    </div>
-
-                    <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
+                        </a>    
+                    </div>    
+                    
+                    <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">               {{-- Twitter --}}
                         <a href="" class="hover:text-gray-400">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 18 18" fill="none">
                                 <path
@@ -100,7 +83,7 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
+                    <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">             {{-- Facebook --}}
                         <a href="" class="hover:text-gray-400">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 14 16" fill="none">
                                 <path
@@ -109,31 +92,16 @@
                             </svg>
                         </a>
                     </div>
-                </div>
+                </div>                  {{-- End of Social Media SVGs --}}
+
+
                 <p class="mt-12"> 
-                 {{--    @if (array_key_exists('summary', $game))
                         {{ $game['summary'] }}
-                    @else
-                        Duis ex aliquip id aliquip qui. Pariatur officia non eiusmod excepteur eiusmod cillum dolore deserunt aute deserunt id pariatur id pariatur. 
-                        Veniam aliqua dolor tempor minim nisi reprehenderit minim nostrud.
-                    @endif --}}
                 </p>
 
-                <div class="mt-12">
-                    {{-- <button class="flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
-                        <span class="ml-4"> Play Trailer </span>
-                        <a href="" class="hover:text-gray-400">
-                            <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 
-                                    10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z">
-                                </path>
-                            </svg>
-                        </a>
-                    </button> --}}
-
-                  {{--   @if (array_key_exists('videos', $game))
-                        <a href="https://www.youtube.com/watch/{{ $game['videos'][0]['video_id']}}" class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
+                <div class="mt-12"> 
+                    @if ($game['trailer'])
+                        <a href="{{$game['trailer']}}" class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
                             <span class="ml-4"> Play Trailer </span>
                             <a href="" class="hover:text-gray-400">
                                 <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24">
@@ -144,9 +112,9 @@
                                 </svg>
                             </a>
                         </a>
-                    
-                    @endif --}}
-                  
+                    @else
+                        <p>No Trailer Yet</p>
+                    @endif                 
                 </div>
             </div>
         </div>
@@ -154,77 +122,57 @@
 
     <div class="images-container border-b border-gray-800 pb-12 mt-8">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Images</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-            
-                {{-- @if (array_key_exists('screenshots', $game))
-                    @foreach ($game['screenshots'] as $screenshot)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">  
+                @foreach ($game['screenshots'] as $screenshot)                      {{-- Display screenshots, show larger picture when clicked --}}
                         <div>
-                            <a href="{{Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url'])}}">
-                                <img src="{{Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url'])}}" alt="screenshot"
-                                    class="hover:opacity-75 transition ease-in-out duration-150">
+                            <a href="{{ $screenshot['huge']}}">
+                                <img src="{{ $screenshot['big']}}">
                             </a>
                         </div>
-                    @endforeach       
-                @else
-                    No Screenshots Currently Available!    
-                @endif --}}
-            
+                @endforeach       
             </div>
     </div> {{-- End images container --}}
     
-
     <div class="similar-games-container border-b border-gray-800 pb-6 mt-8">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Similar Games </h2>
-
-        <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide grid used to display all covers 
-            
-            @if (array_key_exists('similar_games', $game))
-                @foreach ($game['similar_games'] as $game)
-                    <div class="game mt-8">
-                        <div class="relative inline-block">
-                            
-                            @if ( isset($game['cover']) ) 
+            <div class="similar-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12"> {{-- Create a 6 wide grid used to display all covers --}} 
+                @if ( isset($game['similar_games']))
+                    @foreach ($game['similarGames'] as $game)
+                        <div class="game mt-8">
+                            <div class="relative inline-block">   
                                 <a href="{{ route('games.show', $game['slug']) }}">
-                                    <img src="{{Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])}}" alt="game cover"
-                                        class="hover:opacity-75 transition ease-in-out duration-150 w-48 h-64">
+                                    @if ($game['cover'])
+                                        <img src="{{$game['coverImageUrl']}}"                   {{-- Show Cover if present or Blank if not --}}
+                                            class="w-48 h-64 hover:opacity-75 transition ease-in-out duration-150">
+                                    @else
+                                        <img src="/images/nocover.png" class="w-48">
+                                    @endif 
                                 </a>
-                            @else
-                                <img src="/images/nocover.png">
-                            @endif
-                           
-                      
-                            @if (isset($game['rating']))
-                                <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
-                                    style="right:-20px; bottom:-20px">
-                                    <div class="font-semibold text-xs flex justify-center items-center h-full">
-                                        {{round($game['rating']).'%'}}
+                            
+                                @if ($game['rating'])                                                                   {{-- If game has a rating display the rating circle --}}
+                                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full"
+                                        style="right:-20px; bottom:-20px">
+                                        <div class="font-semibold text-xs flex justify-center items-center h-full">
+                                            {{ $game['rating']}}
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                        </div>
+                                @endif
+                            </div>
 
-                        <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
-                            {{$game['name']}}
-                        </a>
+                            <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8">
+                                {{$game['name']}}
+                            </a>
 
-                        <div class="text-gray-400 mt-1 ">
-                            @if (array_key_exists('platforms', $game))
-                               @foreach ($game['platforms'] as $platform)
-                                    @if (array_key_exists('abbreviation', $platform))
-                                        {{$platform['abbreviation']}}
-                                        &middot;
-                                    @endif
-                                @endforeach  
-                            @endif
-                           
-                        </div>
-                    </div> {{-- End of one game card
-                @endforeach
-            @endif  --}}
-
-        </div>
+                            <div class="text-gray-400 mt-1 ">
+                                {{ $game['platforms'] }}
+                            </div>
+                        </div>          {{-- End of one game card --}}
+                    @endforeach
+                @else   
+                <p> No Similar Games Available</p>
+                @endif
+            </div>
     </div> {{-- End similar games --}}
-
 </div>
 
 @endsection

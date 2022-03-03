@@ -39,7 +39,7 @@ class RecentlyReviewed extends Component
         //dd($recentlyReviewedUnformatted);
 
         $this->recentlyReviewed = $this->formatForView($recentlyReviewedUnformatted);
-            
+           //  dump($this->recentlyReviewed);
     }
 
     public function render()
@@ -53,10 +53,11 @@ class RecentlyReviewed extends Component
             return collect($game)->merge([                                                          //Specify the fields wish to Merge for Formatting
                 'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
                 'platforms' => collect($game['platforms'])->implode('abbreviation', ', '),          
-               // 'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),           // Works for popular games but not RecentlyReviewed, give array error.
-               // 'coverSet' => isset($game['cover']) ? $game['cover']: null,
-               // 'coverImage' => 'coverSet'(Str::replaceFirst('thumb', 'cover_big', $game['cover']['url'])),
+                'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No picture',           // Works for popular games but not RecentlyReviewed, give array error.
+                'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Sorry No Summary Available!',
             ]);                                
         })->toArray();
+
+       
     }
 }

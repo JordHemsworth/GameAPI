@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -44,13 +45,12 @@ class MostAnticipated extends Component
         return view('livewire.most-anticipated');
     }
 
-    
     private function formatForView($games)
     {
         return collect($games)->map(function ($game) {
             return collect($game)->merge([
-                //'coverImageUrl' => Str::replaceFirst('thumb','cover_small', $game['cover']['url']),
                 'releaseDate' => Carbon::parse($game['first_release_date'])->format('M d, Y'),
+                'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_small', $game['cover']['url']) : 'No picture',
             ]);
         })->toArray();
     }
