@@ -38,10 +38,19 @@ class PopularGames extends Component
 
         });
 
-        
+     
 
         $this->popularGames = $this->formatForView($popularGamesUnformatted);       //Save to PopularGames array once the data has been formatted.
 
+        collect($this->popularGames)->filter(function ($game){
+            return $game['rating'];        
+        })->each(function ($game){
+            $this->emit('gameWithRatingAdded', [
+                'slug' => $game['slug'],
+                'rating' => $game['rating'] / 100
+            ]);           //Emit the event to fire from the main livewire component
+        });
+        
     }
 
     public function render()
@@ -54,7 +63,7 @@ class PopularGames extends Component
     {
         return collect($games)->map(function ($game){
             return collect($game)->merge([                                                          //Specify the fields wish to Merge for Formatting
-                'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
+                'rating' => isset($game['rating']) ? round($game['rating']) : null,
                 'platforms' => collect($game['platforms'])->implode('abbreviation', ', '),          
                 'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),           // Replace the Thumb image passed through with a larger cover. Unsure why works now.
             ]);                                     

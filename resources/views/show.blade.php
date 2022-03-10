@@ -60,10 +60,10 @@
 
                 <div class="mt-12"> 
                     @if ($game['trailer'])
-                        <a href="{{$game['trailer']}}" class="inline-flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
+                        <a href="{{$game['trailer']}}" class="bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
                             <span class="ml-4"> Play Trailer </span>
                             <a href="" class="hover:text-gray-400">
-                                <svg class="w-6 fill-current ml-2" viewBox="0 0 24 24">
+                                <svg class="w-6 fill-current ml-2 relative " viewBox="0 0 24 24">
                                     <path d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 
                                         10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z">

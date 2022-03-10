@@ -10,3 +10,17 @@
     @endforelse
 
 </div> {{-- End of Popular Games --}}
+
+
+@push('scripts')
+   @include('_rating', [
+       'event' => 'gameWithRatingAdded'
+   ])
+
+    {{-- <script>
+        Livewire.on('gameWithRating', params => {
+            console.log('A post was added with the id of: ' + params.slug);
+        })
+    </script> --}}
+
+@endpush
