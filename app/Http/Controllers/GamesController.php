@@ -59,8 +59,8 @@ class GamesController extends Controller
                 'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No Picture',
                 'genres' => array_key_exists('genres', $game) ? collect($game['genres'])->implode('name', ', ') : 'Undefined Genre',   
                 'platforms' => array_key_exists('platforms', $game) ? collect($game['platforms'])->implode('abbreviation', ', ') : 'No Platforms Available',     
-                'memberRating' => array_key_exists('rating', $game) ? round($game['rating']).'%' : '0%',
-                'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']).'%' : '0%',
+                'memberRating' => array_key_exists('rating', $game) ? round($game['rating']) : '0',
+                'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']) : '0',
                 'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Oh no! How embarrasing. At this moment in time, we do not have a summary available for this game! Please check back soon.',
                 'trailer' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id'] : 404,
                 'screenshots' => isset($game['screenshots']) ? collect($game['screenshots'])->map(function ($screenshot){
@@ -72,7 +72,7 @@ class GamesController extends Controller
                 'similarGames' => array_key_exists('similar_games', $game) ? collect($game['similar_games'])->map(function ($game){
                     return collect($game)->merge([
                         'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No picture',
-                        'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
+                        'rating' => isset($game['rating']) ? round($game['rating']) : null,
                         'platforms' => array_key_exists('platforms', $game) ? collect($game['platforms'])->implode('abbreviation', ', ') : null,
                     ]);                  
                 })->take(6) : "No Similar Games", 

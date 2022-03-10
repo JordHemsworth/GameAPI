@@ -10,11 +10,17 @@
         </a>
             
         @if ($game['rating'])                                                               {{-- Show rating circle if a rating exists --}}
-            <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right:-20px; bottom:-20px">
-                <div class="font-semibold text-xs flex justify-center items-center h-full">
-                    {{$game['rating']}}
-                </div>
+            <div id="{{$game['slug']}}" class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full" style="right:-20px; bottom:-20px">
+                @push('scripts')
+                @include('_rating', [
+                    'slug' => $game['slug'],
+                    'rating' => $game['rating'],
+                    'event' => null,
+                ])
+            @endpush
             </div>
+
+           
         @endif
     </div>
 
