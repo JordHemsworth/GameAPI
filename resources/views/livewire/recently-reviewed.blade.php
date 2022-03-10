@@ -5,7 +5,7 @@
             <div class="relative flex-none">
                 <a href="{{ route('games.show', $game['slug']) }}">
 
-                    @if ($game['cover'])
+                    @if (isset($game['cover']))
                         <img src="{{$game['coverImageUrl']}}" class="w-48 hover:opacity-75 transition ease-in-out duration-150">
                     @else
                         <img src="/images/nocover.png" class="w-48">
@@ -43,7 +43,6 @@
                 <div class="ml-12">
                     <div class="bg-slate-600 w-48 h-8 mt-2 rounded"></div>              {{-- Skeleton Game Details --}}
                     <div class="bg-slate-600 w-48 h-8 mt-2 rounded"></div>
-
                     <div class="bg-slate-600 w-64 h-16 mt-8 rounded"></div>
                 </div>
             </div>

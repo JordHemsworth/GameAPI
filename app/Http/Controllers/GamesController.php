@@ -56,19 +56,19 @@ class GamesController extends Controller
     private function formatGameForView($game)                       /* Removes the formatting logic from View. Check item is in array, then append or pluck specific keys */
     {
             return collect($game)->merge([
-                'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No picture',
+                'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No Picture',
                 'genres' => array_key_exists('genres', $game) ? collect($game['genres'])->implode('name', ', ') : 'Undefined Genre',   
                 'platforms' => array_key_exists('platforms', $game) ? collect($game['platforms'])->implode('abbreviation', ', ') : 'No Platforms Available',     
                 'memberRating' => array_key_exists('rating', $game) ? round($game['rating']).'%' : '0%',
                 'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']).'%' : '0%',
-                'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Sorry No Summary Available!',
+                'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Oh no! How embarrasing. At this moment in time, we do not have a summary available for this game! Please check back soon.',
                 'trailer' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id'] : 404,
-                'screenshots' => array_key_exists('screenshots', $game) ? collect($game['screenshots'])->map(function ($screenshot){
+                'screenshots' => isset($game['screenshots']) ? collect($game['screenshots'])->map(function ($screenshot){
                     return [
                         'big' => Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url']),
                         'huge' => Str::replaceFirst('thumb', 'screenshot_huge', $screenshot['url']),
                     ];
-                })->take(9): 'Screenshots Unavilable',
+                })->take(9) : null ,
                 'similarGames' => array_key_exists('similar_games', $game) ? collect($game['similar_games'])->map(function ($game){
                     return collect($game)->merge([
                         'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No picture',
@@ -77,7 +77,7 @@ class GamesController extends Controller
                     ]);                  
                 })->take(6) : "No Similar Games", 
 
-                    'social' => [
+                   /*  'social' => [
                         'instagram' => collect($game['websites'])->filter(function ($website){
                         return Str::contains($website['url'], 'instagram');
                         })->first(),
@@ -88,7 +88,7 @@ class GamesController extends Controller
                             return Str::contains($website['url'], 'facebook');
                         })->first(),
                     ]
-                  
+                   */
 
                 /* 'instagram' => collect($game['websites'])->filter(function ($website){
                         return Str::contains($website['url'], 'instagram');
