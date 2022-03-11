@@ -26,12 +26,8 @@
                     </ul>
                 </div>
 
-                <div class="flex items-center mt-6 lg:mt-0">
-                    <div class="relative">
-                        <input type="text" class="bg-gray-800 text-sm rounded-full w-64 px-3 py-1" placeholder="Search...">
-                        {{-- TODO add search icon svg --}}
-
-                    </div>
+                <div class="flex items-center mt-6 lg:mt-0 mr-12">
+                    <livewire:search-dropdown>
                 </div>
             </nav>
         </header>
@@ -51,7 +47,7 @@
 
         <script src="/js/app.js"></script>
         @stack('scripts')
-        
+
     </body>
 
 </html>
