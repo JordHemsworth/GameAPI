@@ -19,8 +19,6 @@
                     ])
                 @endpush
             </div>
-
-           
         @endif
     </div>
 
