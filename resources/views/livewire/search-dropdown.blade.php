@@ -10,7 +10,7 @@
     >
 
     @if (strlen($search) >= 2)
-        <div class="absolute z-50 bg-gray-800 text-xs rounded w-64 mt-2" x-show="isVisible" style="z-index: 10;">
+        <div class="absolute bg-gray-800 text-xs rounded w-64 mt-2" x-show="isVisible" style="z-index: 10;">
             @if (count($searchResults) > 0)
                 <ul>
                     @foreach($searchResults as $game)

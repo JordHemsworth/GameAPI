@@ -32,7 +32,7 @@ class GamesController extends Controller
             'Client-ID' => env('IGDB_KEY'),
             'Authorization' => env('IGDB_AUTH'),
         ])  ->withBody(                                                     /* Get the game details where the slug matches the slug being passed through.*/
-                'fields name, cover.url, platforms.abbreviation, rating, involved_companies,
+                'fields name, cover.url, platforms.abbreviation, rating, involved_companies, first_release_date,
                 slug,genres.name, aggregated_rating, summary, websites.*, videos.*, screenshots.*, 
                 similar_games.cover.url, similar_games.name, similar_games.rating,similar_games.platforms.abbreviation, similar_games.slug;
                 where slug="'.$slug.'";                                        
@@ -45,8 +45,6 @@ class GamesController extends Controller
         
         abort_if(!$game, 404);                                               /* If the game or url does not exist show 404 */
 
-        dump($this->formatGameForView($game[0]));
-
         return view('show', [
             'game' => $this->formatGameForView($game[0]),
         ]);
@@ -58,11 +56,12 @@ class GamesController extends Controller
             return collect($game)->merge([
                 'coverImageUrl' => array_key_exists('cover', $game) ? Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) : 'No Picture',
                 'genres' => array_key_exists('genres', $game) ? collect($game['genres'])->implode('name', ', ') : 'Undefined Genre',   
-                'platforms' => array_key_exists('platforms', $game) ? collect($game['platforms'])->implode('abbreviation', ', ') : 'No Platforms Available',     
+                'platforms' => array_key_exists('platforms', $game) ? collect($game['platforms'])->implode('abbreviation', ', ') : 'No Platforms Available',
+                'releaseDate' => array_key_exists('first_release_date', $game) ? Carbon::parse($game['first_release_date'])->format('M d, Y') : 'Unknown Release Date',     
                 'memberRating' => array_key_exists('rating', $game) ? round($game['rating']) : '0',
                 'criticRating' => array_key_exists('aggregated_rating', $game) ? round($game['aggregated_rating']) : '0',
-                'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Oh no! How embarrasing. At this moment in time, we do not have a summary available for this game! Please check back soon.',
-                'trailer' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id'] : 404,
+                'summary' => array_key_exists('summary', $game) ? ($game['summary']) : 'Oh no! How embarrasing. We do not have a summary available for this game! Please check back soon.',
+                'trailer' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id'] : null,
                 'screenshots' => isset($game['screenshots']) ? collect($game['screenshots'])->map(function ($screenshot){
                     return [
                         'big' => Str::replaceFirst('thumb', 'screenshot_big', $screenshot['url']),
@@ -77,30 +76,6 @@ class GamesController extends Controller
                     ]);                  
                 })->take(6) : "No Similar Games", 
 
-                   /*  'social' => [
-                        'instagram' => collect($game['websites'])->filter(function ($website){
-                        return Str::contains($website['url'], 'instagram');
-                        })->first(),
-                        'twitter' => collect($game['websites'])->filter(function ($website){
-                            return Str::contains($website['url'], 'twitter');
-                        })->first(),
-                        'facebook' => collect($game['websites'])->filter(function ($website){
-                            return Str::contains($website['url'], 'facebook');
-                        })->first(),
-                    ]
-                   */
-
-                /* 'instagram' => collect($game['websites'])->filter(function ($website){
-                        return Str::contains($website['url'], 'instagram');
-                    })->first(),
-                    'twitter' => collect($game['websites'])->filter(function ($website){
-                        return Str::contains($website['url'], 'twitter');
-                    })->first(),
-                    'facebook' => collect($game['websites'])->filter(function ($website){
-                        return Str::contains($website['url'], 'facebook');
-                    })->first(), 
-                
-                'involvedCompanies' => $game['involved_companies'][0]['company']['name'],  /* Trying to array access offset on int value error */ 
             ]); 
     }            
 }     

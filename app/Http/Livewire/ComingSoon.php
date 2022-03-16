@@ -18,7 +18,7 @@ class ComingSoon extends Component
         $now = Carbon::now()->timestamp;
         $oneMonth = Carbon::now()->addMonth(1)->timestamp;
         
-        $comingSoonUnformatted = Cache::remember('coming-soon', 5, function () use ($now, $oneMonth) {
+        $comingSoonUnformatted = Cache::remember('coming-soon', 100, function () use ($now, $oneMonth) {
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
                 'Client-ID' => env('IGDB_KEY'),
                 'Authorization' => env('IGDB_AUTH'),

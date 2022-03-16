@@ -18,7 +18,7 @@ class PopularGames extends Component
         $before = Carbon::now()->subMonths(4)->timestamp;
         $after = Carbon::now()->addMonths(2)->timestamp;
 
-        $popularGamesUnformatted = Cache::remember('popular-games', 7, function () use($before, $after) {
+        $popularGamesUnformatted = Cache::remember('popular-games', 100, function () use($before, $after) {
             
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
                 'Client-ID' => env('IGDB_KEY'),
@@ -37,8 +37,6 @@ class PopularGames extends Component
                 ->post('https://api.igdb.com/v4/games')->json();
 
         });
-
-     
 
         $this->popularGames = $this->formatForView($popularGamesUnformatted);       //Save to PopularGames array once the data has been formatted.
 
@@ -65,7 +63,7 @@ class PopularGames extends Component
             return collect($game)->merge([                                                          //Specify the fields wish to Merge for Formatting
                 'rating' => isset($game['rating']) ? round($game['rating']) : null,
                 'platforms' => collect($game['platforms'])->implode('abbreviation', ', '),          
-                'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),           // Replace the Thumb image passed through with a larger cover. Unsure why works now.
+                'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),     
             ]);                                     
         })->toArray();
 
