@@ -24,6 +24,4 @@
 
 </div> {{-- End of Container --}}
 
-
-
 @endsection
