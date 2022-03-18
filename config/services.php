@@ -31,8 +31,8 @@ return [
     ],
 
     'igdb' => [
-        'Client-ID' => env('IGBD_KEY'),
-        'Authorization' => env('IGDB_AUTH'),
+        'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
+        'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
     ],
 
 ];

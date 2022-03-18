@@ -24,6 +24,7 @@ class ComingSoon extends Component
                 'Authorization' => env('IGDB_AUTH'), */
                 'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
                 'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
+                
 
             ])
                 ->withBody(                                                     /* Get 3 games that are close to release. */

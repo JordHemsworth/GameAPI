@@ -17,7 +17,7 @@
                         <li class="border-b border-gray-700">
                             <a href="{{ route('games.show', $game['slug']) }}" 
                                 class="hover:bg-gray-700 flex items-center transition ease-in-out duration-150 px-4 py-4"
-                                @if($loop->last) @keydown.tab="isVisible = false" @endif
+                                @if($loop->last) @keydown.tab="isVisible = false" @endif                                            {{-- Hide once tabbed through last entry --}}
                                 
                             >
                                 @if (isset($game['cover']))

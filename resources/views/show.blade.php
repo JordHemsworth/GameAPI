@@ -63,7 +63,7 @@
             <div class="mt-12 flex">
                 @if (isset($game['trailer']))
                 <a href="{{$game['trailer']}}"
-                    class="flex bg-blue-500 text-white font-semibold px-4 py-4 hover:bg-blue-700 rounded">
+                    class="flex bg-blue-500 text-white font-semibold px-6 py-4 hover:bg-blue-700 rounded">
                     <span class="ml-4"> Play Trailer </span>
 
                     <svg class="w-6 fill-current ml-2 " viewBox="0 0 24 24">
