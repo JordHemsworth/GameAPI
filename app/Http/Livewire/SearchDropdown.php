@@ -15,11 +15,8 @@ class SearchDropdown extends Component
         if (strlen($this->search) >= 2) {
 
             $this->searchResults = Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                /* 'Client-ID' => env('IGDB_KEY'),
-                'Authorization' => env('IGDB_AUTH'), */
-
-                'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
-                'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
+                'Client-ID' => config('services.igdb.Client-ID'),
+                'Authorization' => config('services.igdb.Authorization'),
             ])        
                 ->withBody(                                                       /* Updated to show recently released games that are popular. */
                     'search '."\"{$this->search}\"".';                                             
