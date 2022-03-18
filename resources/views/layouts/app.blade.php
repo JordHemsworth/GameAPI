@@ -13,16 +13,16 @@
 <body class="bg-gray-900 text-white">
 
     <header class="border-b border-gray-800">
-        <nav class="contain mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-y">
-            <div class="flex flex-col lg:flex-row items-centre mt-2 mb-5">
+        <nav class="contain mx-auto flex flex-col lg:flex-row items-center justify-between ">
+            <div class="flex flex-col lg:flex-row items-centre">
                 <a href="/">
-                    <img src="/images/ubisoft.png" alt="logo" class="w-32 flex-none ml-14 mt-2">
+                    <img src="/images/IGDB.png" alt="logo" class="w-32 flex-none ml-12 ">
                 </a>
 
                 <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-10">
-                    <li><a href="#" class="hover:text-gray-400"> Games </a></li>
-                    <li><a href="#" class="hover:text-gray-400"> Reviews </a></li>
-                    <li><a href="#" class="hover:text-gray-400"> Coming Soon </a></li>
+                    <li><a href="/" class="hover:text-gray-400"> Games </a></li>
+                    <li><a href="#" class="hover:text-gray-400"> Reviews </a></li>     
+                    <li><a href="#" class="hover:text-gray-400"> Coming Soon </a></li>                 
                 </ul>
             </div>
 

@@ -22,11 +22,15 @@
         @endif
     </div>
 
-    <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8 max-h-5 text-ellipsis">
-        {{$game['name']}}
-    </a>
+    <div class="space-y-4">
+        <a href="{{ route('games.show', $game['slug']) }}" class="block text-base font-semibold leading-tight hover:text-gray-400 mt-8 text-ellipsis">
+            {{$game['name']}}
+        </a>
+        
+        <div class="text-gray-400 mt-2 ">
+            {{$game['platforms']}}
+        </div>
 
-    <div class="text-gray-400 mt-1 ">
-        {{$game['platforms']}}
     </div>
+        
 </div> {{-- End of one game card --}}

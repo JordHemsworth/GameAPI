@@ -21,8 +21,9 @@ class PopularGames extends Component
         $popularGamesUnformatted = Cache::remember('popular-games', 100, function () use($before, $after) {
             
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                'Client-ID' => env('IGDB_KEY'),
-                'Authorization' => env('IGDB_AUTH'),
+                'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
+                'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
+
             ])        
                 ->withBody(                                                     /* Updated to show recently released games that are popular. */
                     'fields name, cover, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;                                           
