@@ -21,8 +21,11 @@ class MostAnticipated extends Component
 
         $mostAnticipatedUnformatted = Cache::remember('most-anticipated', 100, function () use ($now, $afterFourMonths) {
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                'Client-ID' => env('IGDB_KEY'),
-                'Authorization' => env('IGDB_AUTH'),
+                /* 'Client-ID' => env('IGDB_KEY'),
+                'Authorization' => env('IGDB_AUTH'), */
+                'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
+                'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
+                
             ])
                 ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
                     'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, summary, slug;                                           
