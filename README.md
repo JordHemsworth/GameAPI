@@ -44,7 +44,7 @@
 
 <div align="center">
   <a href="https://github.com/JordHemsworth/GameAPI">
-    <img src="public/images/screenshot.jpg" alt="Logo" width="1080" height="560">
+    <img src="public/images/screenshot.jpg" alt="Logo" width="1020" height="560">
   </a>
 </div>
 
@@ -148,30 +148,31 @@ To install the site locally, follow the steps below.
    ```sh   
    cp .env.example .env
    ```
-6. Remove debug bar by placing code in to '.env'
-    ```sh
-    DEBUGBAR_ENABLED=false           #Disable Livewire debug bar
-    ```
+6. Enter your API details in to `.env` & remove debug bar.
+   ```php
+       IGDB_KEY=Client ID                     #IGDB API Details
+       IGDB_AUTH="Bearer access_token"
+
+       DEBUGBAR_ENABLED=false              #Disable Livewire debug bar         
+   ```  
 7. Generate app encryption key
    ```php
    php artisan key:generate
    ```
-8. Enter your API details in to `services.php`.
-   ```php
-      'igdb' => [
-        'Client-ID' => 'Client ID',
-        'Authorization' => 'Bearer access_token'
-      ],            
-   ```  
-9. Run the application  
+8. Run the application  
    ```sh
    php artisan serve
    ``` 
-10. Search your favourite games!  
+9. Search your favourite games!  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### To Do
+1. Work on a more responsive design for Mobile.
 
+2. Implement modals for screenshots and trailer
+
+3. Detailed other pages such as full games list with pagination. 
 
 <!-- CONTACT -->
 ## Contact
