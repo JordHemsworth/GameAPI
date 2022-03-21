@@ -31,8 +31,8 @@ class GamesController extends Controller
         $game = Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
             /* 'Client-ID' => env('IGDB_KEY'),
             'Authorization' => env('IGDB_AUTH'), */
-            'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
-            'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
+            'Client-ID' => config('services.igdb.key'),
+            'Authorization' => config('services.igdb.auth'),
             
         ])  ->withBody(                                                     /* Get the game details where the slug matches the slug being passed through.*/
                 'fields name, cover.url, platforms.abbreviation, rating, involved_companies, first_release_date,

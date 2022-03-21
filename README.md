@@ -178,6 +178,8 @@ To install the site locally, follow the steps below.
 
 Project Link: [https://github.com/JordHemsworth/GameAPI](https://github.com/JordHemsworth/GameAPI)
 
+Production Site: [http://35.173.49.241/]
+
 LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
 
 <p align="right">(<a href="#top">back to top</a>)</p>

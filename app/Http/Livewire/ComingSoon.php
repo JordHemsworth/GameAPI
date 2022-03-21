@@ -20,8 +20,8 @@ class ComingSoon extends Component
         
         $comingSoonUnformatted = Cache::remember('coming-soon', 100, function () use ($now, $oneMonth) {
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                'Client-ID' => config('services.igdb.Client-ID'),
-                'Authorization' => config('services.igdb.Authorization'),
+                'Client-ID' =>  config('services.igdb.key'),
+                'Authorization' => config('services.igdb.auth'),
             ])
                 ->withBody(                                                     /* Get 3 games that are releasing in the next month. */
                     'fields name, cover.url, rating, first_release_date, slug ;                                           
