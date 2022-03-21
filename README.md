@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-[[LinkedIn][linkedin-shield]][www.linkedin.com/in/jordanhemsworth]
+LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
 
 
 <!-- PROJECT LOGO -->
@@ -13,7 +13,7 @@
 <h3 align="center">Game API</h3>
 
   <p align="center">
-    A fun project to develop my PHP skills utilising the Laravel framework to make API calls to the IGDB allowing users to see popular games & search their favourites.
+    A fun project to develop my PHP skills utilising the Laravel framework to make API calls to the Internet Game Database (IGDB) allowing users to see popular games & search their favourites.
   </p>
 </div>
 
@@ -45,7 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Screenshot of Site][product-screenshot]](https://example.com)
+[![Screenshot of Site][product-screenshot]](public\images\screenshot.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -66,18 +66,12 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To clone this project locally, simply follow the example steps below.
+To use this project locally, simply follow the example steps below.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  composer
-  ```
+First you will need an API key to access the IGDB, follow the steps from the IGDB website below or view on their official website.
 
-### Installation
-i9
 <h2> Account Creation </h2>
 
 **Taken from IGDB: [https://api-docs.igdb.com/#about]
@@ -87,13 +81,17 @@ In order to use our API, you must have a Twitch Account.
 The IGDB.com API is free for non-commercial usage under the terms of the Twitch Developer Service Agreement.
 
 Sign Up with Twitch for a free account
+
 Ensure you have Two Factor Authentication enabled
+
 Register your application
+
 Manage your newly created application
+
 Generate a Client Secret by pressing [New Secret]
+
 Take note of the Client ID and Client Secret
-Authentication
-Now that you have a Client ID and Client Secret you will be authenticating as a Twitch Developer using oauth2. Detailed information can be found on the Twitch Developer Docs.
+
 
 <h2> Authentication </h2>
 Now that you have a Client ID and Client Secret you will be authenticating as a Twitch Developer using oauth2. Detailed information can be found on the Twitch Developer Docs.
@@ -102,11 +100,13 @@ Doing so will give you an access token that is used for future requests to our A
 
 Make a POST request to https://id.twitch.tv/oauth2/token with the following query string parameters, substituting your Client ID and Client Secret accordingly.
 
+```
 client_id=Client ID
 
 client_secret=Client Secret
 
 grant_type=client_credentials
+```
 
 <h3> Example </h3>
 If your Client ID is abcdefg12345 and your Client Secret is hijklmn67890, the whole url should look like the following.
@@ -125,50 +125,43 @@ The expires_in shows you the number of seconds before the access_token will expi
 
 ```
 
+### Installation
 
-Requests
-Most of the requests to the API will use the POST method
-The base URL is: https://api.igdb.com/v4
-You define which endpoint you wish to query by appending /{endpoint name} to the base URL eg. https://api.igdb.com/v4/games
-Include Client ID and access_token in the HEADER of your request so that your headers look like the following. Take special care of the capitalisation. Bearer should be hard-coded.
-```php
-Client-ID: Client ID
-Authorization: Bearer access_token
-```
+To install the site locally, follow the steps below.
 
-You use the BODY of your request to specify the fields you want to retrieve as well as any other filters, sorting etc
-Example
-If your Client ID is abcdefg12345 and your access_token is prau3ol6mg5glgek8m89ec2s9q5i3i, a simple request to get information about 10 games would be.
+1. Clone GitHub repo for this project locally [https://github.com/JordHemsworth/GameAPI](https://github.com/JordHemsworth/GameAPI)
 
-```sql
-POST https://api.igdb.com/v4/games
-Client-ID: abcdefg12345
-Authorization: Bearer prau3ol6mg5glgek8m89ec2s9q5i3i
-fields *;
-```
-
-
-1. Get your free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+2. CD into the project
    ```sh
-   git clone https://github.com/JordHemsworth/GameAPI
+   cd GameAPI
    ```
-3. Install NPM packages
+3. Install Composer Dependencies
+   ```sh
+   composer install
+   ```
+4. Install NPM packages
    ```sh
    npm install
    ```
-  3. Update NPM packages
-   ```sh
-   npm update
+5. Create .env file
+   ```sh   
+   cp .env.example .env
    ```
-4. Enter your API details in in `services.php`
+6. Generate app encryption key
    ```php
-   'igdb' => [
-        'Client-ID' => '',
-        'Authorization' => 'Bearer '
-    ],
+   php artisan key:generate
    ```
+7. Enter your API details in to `.env` & remove debug bar.
+   ```php
+   IGDB_KEY= Client ID                    #IGDB API Details
+   IGDB_AUTH="Bearer access_token"            
 
+   DEBUGBAR_ENABLED=false              #Disable Livewire debug bar
+   ```  
+8. Run the application  
+   ```sh
+   php artisan serve
+   ```   
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -177,8 +170,8 @@ fields *;
 <!-- CONTACT -->
 ## Contact
 
-
 Project Link: [https://github.com/JordHemsworth/GameAPI](https://github.com/JordHemsworth/GameAPI)
+
 LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
