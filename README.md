@@ -1,13 +1,13 @@
 <div id="top"></div>
 
-LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
+[LinkedIn](www.linkedin.com/in/jordanhemsworth)
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/JordHemsworth/GameAPI">
+    <img src="public/images/IGDB.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Game API</h3>
@@ -45,7 +45,11 @@ LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemswo
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Screenshot of Site][product-screenshot]](public\images\screenshot.jpg)
+<div align="center">
+  <a href="https://github.com/JordHemsworth/GameAPI">
+    <img src="public/images/screenshot.jpg" alt="Logo" width="1080" height="560">
+  </a>
+</div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
