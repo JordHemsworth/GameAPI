@@ -21,8 +21,8 @@ class MostAnticipated extends Component
 
         $mostAnticipatedUnformatted = Cache::remember('most-anticipated', 100, function () use ($now, $afterFourMonths) {
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                'Client-ID' => config('services.igdb.Client-ID'),
-                'Authorization' => config('services.igdb.Authorization'),
+                'Client-ID' => config('services.igdb.key'),
+                'Authorization' => config('services.igdb.auth'),
 
             ])
                 ->withBody(                                                     /* Get 3 games that are releasing within 4 months */

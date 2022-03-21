@@ -24,7 +24,7 @@ class ComingSoon extends Component
                 'Authorization' => config('services.igdb.auth'),
             ])
                 ->withBody(                                                     /* Get 3 games that are releasing in the next month. */
-                    'fields name, cover.url, rating, first_release_date, slug ;                                           
+                    'fields name, cover.url, rating, first_release_date, slug;                                           
                         where platforms = (48,49,130,6)
                         & (first_release_date > '.$now.'
                         & first_release_date <= '.$oneMonth.');  

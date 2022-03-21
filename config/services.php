@@ -35,9 +35,4 @@ return [
         'auth' => env('IGDB_AUTH'),
     ],
 
-    /* 'igdb' => [
-        'Client-ID' => 'p1dl8jccjvicjme7tpvvjb6zoq8ir7',
-        'Authorization' => 'Bearer yub0jefu4yd91f6wjcq2h09194ofv9'
-    ], */
-
 ];

@@ -21,8 +21,8 @@ class RecentlyReviewed extends Component
         $recentlyReviewedUnformatted = Cache::remember('recently-reviewed', 100, function () use ($before, $current) {
             
             return Http::withHeaders([                            /* Use HTTP client with headers of API tokens from .env */
-                'Client-ID' => config('services.igdb.Client-ID'),
-                'Authorization' => config('services.igdb.Authorization'),
+                'Client-ID' => config('services.igdb.key'),
+                'Authorization' => config('services.igdb.auth'),
             ])        
                 ->withBody(                                                     /* Get 3 games that have recently been released within 2 months */
                     'fields name, cover, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, rating_count, summary, slug;                                           
