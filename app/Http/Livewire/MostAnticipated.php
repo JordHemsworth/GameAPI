@@ -25,12 +25,11 @@ class MostAnticipated extends Component
                 'Authorization' => config('services.igdb.Authorization'),
 
             ])
-                ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
+                ->withBody(                                                     /* Get 3 games that are releasing within 4 months */
                     'fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, summary, slug;                                           
                         where platforms = (48,49,130,6)
                         & ( first_release_date >= '.$now.' 
                         & first_release_date < '.$afterFourMonths.');
-                        sort popularity desc;
                         limit 3;',
                     'text/plain'
                 )
@@ -38,6 +37,8 @@ class MostAnticipated extends Component
         });
 
         $this->mostAnticipated = $this->formatForView($mostAnticipatedUnformatted);
+
+       // ddd($this->mostAnticipated);
 
     }
 

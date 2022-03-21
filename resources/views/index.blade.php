@@ -8,7 +8,7 @@
 
     <div class="flex flex-col lg:flex-row my-10">
         <div class="recently-reviewed w-full lg:w-3/4 mr-0 lg:mr-32">
-            <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Recently Reviewed</h2>
+            <h2 class="text-blue-500 uppercase tracking-wide font-semibold"> Recently Released</h2>
                 <livewire:recently-reviewed>
         </div> {{-- End of Recently Reviewed --}}
 

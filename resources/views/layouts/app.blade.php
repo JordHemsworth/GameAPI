@@ -21,8 +21,8 @@
 
                 <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-10">
                     <li><a href="/" class="hover:text-gray-400"> Games </a></li>
-                    <li><a href="#" class="hover:text-gray-400"> Reviews </a></li>     
-                    <li><a href="#" class="hover:text-gray-400"> Coming Soon </a></li>                 
+                    <li><a href="http://127.0.0.1:8000/#recentlyReleased" class="hover:text-gray-400"> Recently Released </a></li>     
+                    <li><a href="http://127.0.0.1:8000/#comingSoon" class="hover:text-gray-400"> Coming Soon </a></li>                 
                 </ul>
             </div>
 

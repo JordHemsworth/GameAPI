@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[[LinkedIn][linkedin-shield]][www.linkedin.com/in/jordanhemsworth]
 
 
 <!-- PROJECT LOGO -->
@@ -36,12 +36,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -50,9 +45,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+[![Screenshot of Site][product-screenshot]](https://example.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -64,6 +57,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [Tailwind](https://tailwindcss.com/)
 * [Livewire](https://laravel-livewire.com/)
 * [Angular](https://angular.io/)
+* [IGDB](https://api-docs.igdb.com/#about)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -72,21 +66,21 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To clone this project locally, simply follow the example steps below.
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
-  componser
+  composer
   ```
 
 ### Installation
 i9
 <h2> Account Creation </h2>
-**Taken from IGBD
+
+**Taken from IGDB: [https://api-docs.igdb.com/#about]
 
 In order to use our API, you must have a Twitch Account.
 
@@ -133,22 +127,48 @@ The expires_in shows you the number of seconds before the access_token will expi
 
 
 Requests
+Most of the requests to the API will use the POST method
+The base URL is: https://api.igdb.com/v4
+You define which endpoint you wish to query by appending /{endpoint name} to the base URL eg. https://api.igdb.com/v4/games
+Include Client ID and access_token in the HEADER of your request so that your headers look like the following. Take special care of the capitalisation. Bearer should be hard-coded.
+```php
+Client-ID: Client ID
+Authorization: Bearer access_token
+```
 
+You use the BODY of your request to specify the fields you want to retrieve as well as any other filters, sorting etc
+Example
+If your Client ID is abcdefg12345 and your access_token is prau3ol6mg5glgek8m89ec2s9q5i3i, a simple request to get information about 10 games would be.
+
+```sql
+POST https://api.igdb.com/v4/games
+Client-ID: abcdefg12345
+Authorization: Bearer prau3ol6mg5glgek8m89ec2s9q5i3i
+fields *;
+```
 
 
 1. Get your free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/JordHemsworth/GameAPI
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+  3. Update NPM packages
+   ```sh
+   npm update
    ```
+4. Enter your API details in in `services.php`
+   ```php
+   'igdb' => [
+        'Client-ID' => '',
+        'Authorization' => 'Bearer '
+    ],
+   ```
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -159,17 +179,7 @@ Requests
 
 
 Project Link: [https://github.com/JordHemsworth/GameAPI](https://github.com/JordHemsworth/GameAPI)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -178,4 +188,4 @@ Project Link: [https://github.com/JordHemsworth/GameAPI](https://github.com/Jord
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-url]: https://www.linkedin.com/in/jordan-hemsworth-8a66bb175/
-[product-screenshot]: images/screenshot.jpg
+[product-screenshot]: public\images\screenshot.jpg

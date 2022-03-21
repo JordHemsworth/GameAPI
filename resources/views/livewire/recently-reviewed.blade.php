@@ -1,4 +1,4 @@
-<div wire:init="load" class="recently-review-container space-y-12 mt-8">
+<div wire:init="load" id="recentlyReleased" class="recently-review-container space-y-12 mt-8">          {{-- Changed to recently released --}}
 
     @forelse ($recentlyReviewed as $game)
         <div class="game bg-gray-800 rounded-lg shadow-md flex px-6 py-6">
@@ -50,6 +50,6 @@
 
 @push('scripts')
    @include('_rating', [
-       'event' => 'reviewGameWithRatingAdded'
+       'event' => 'reviewGameWithRatingAdded'                                           /* Call animated rating circle */
    ])
 @endpush

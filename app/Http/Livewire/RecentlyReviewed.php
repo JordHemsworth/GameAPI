@@ -24,12 +24,12 @@ class RecentlyReviewed extends Component
                 'Client-ID' => config('services.igdb.Client-ID'),
                 'Authorization' => config('services.igdb.Authorization'),
             ])        
-                ->withBody(                                                     /* Get the 12 highest rated games with their name and rating */
+                ->withBody(                                                     /* Get 3 games that have recently been released within 2 months */
                     'fields name, cover, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, rating_count, summary, slug;                                           
                     where platforms = (48,49,130,6)
                     & ( first_release_date >= '.$before.' 
                     & first_release_date < '.$current.');
-                    sort rating desc;
+                    sort total_rating_count desc;
                     limit 3;',
                     'text/plain'
                 )

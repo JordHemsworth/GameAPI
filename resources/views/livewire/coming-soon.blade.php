@@ -1,4 +1,4 @@
-<div wire:init="load" class="most-anticipated-container space-y-10 mt-8">
+<div wire:init="load" id="comingSoon" class="most-anticipated-container space-y-10 mt-8">
     @forelse ($comingSoon as $game)
         <x-game-card-small :game="$game" />                         {{-- Display small game card with game details else show the skeleton.--}}
     @empty

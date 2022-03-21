@@ -23,7 +23,7 @@ class ComingSoon extends Component
                 'Client-ID' => config('services.igdb.Client-ID'),
                 'Authorization' => config('services.igdb.Authorization'),
             ])
-                ->withBody(                                                     /* Get 3 games that are close to release. */
+                ->withBody(                                                     /* Get 3 games that are releasing in the next month. */
                     'fields name, cover.url, rating, first_release_date, slug ;                                           
                         where platforms = (48,49,130,6)
                         & (first_release_date > '.$now.'
@@ -34,8 +34,6 @@ class ComingSoon extends Component
                 )
                 ->post('https://api.igdb.com/v4/games')->json();
         });
-
-       // dd($this->comingSoon);
 
        $this->comingSoon = $this->formatForView($comingSoonUnformatted);
     }

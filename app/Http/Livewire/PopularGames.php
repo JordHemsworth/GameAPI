@@ -25,7 +25,7 @@ class PopularGames extends Component
                 'Authorization' => config('services.igdb.Authorization'),
 
             ])        
-                ->withBody(                                                     /* Updated to show recently released games that are popular. */
+                ->withBody(                                                     /* Updated to show 12 recently released games that are popular. */
                     'fields name, cover, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, slug;                                           
                     where platforms = (48,49,130,6)
                     & ( first_release_date >= '.$before.' 
