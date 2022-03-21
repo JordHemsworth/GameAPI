@@ -1,13 +1,10 @@
 <div id="top"></div>
 
-[LinkedIn](www.linkedin.com/in/jordanhemsworth)
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/JordHemsworth/GameAPI">
-    <img src="public/images/IGDB.png" alt="Logo" width="80" height="80">
+    <img src="public/images/IGDB_README.jpg" alt="Logo" width="200" height="120">
   </a>
 
 <h3 align="center">Game API</h3>
@@ -78,7 +75,7 @@ First you will need an API key to access the IGDB, follow the steps from the IGD
 
 <h2> Account Creation </h2>
 
-**Taken from IGDB: [https://api-docs.igdb.com/#about]
+[**Taken from IGDB:](https://api-docs.igdb.com/#about)
 
 In order to use our API, you must have a Twitch Account.
 
