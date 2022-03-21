@@ -43,8 +43,8 @@
 ## About The Project
 
 <div align="center">
-  <a href="https://github.com/JordHemsworth/GameAPI">
-    <img src="public/images/screenshot.jpg" alt="Logo" width="1020" height="560">
+  <a href="http://35.173.49.241/">
+    <img src="public/images/screenshot.jpg" alt="Logo" width="920" height="517">
   </a>
 </div>
 
@@ -177,11 +177,12 @@ To install the site locally, follow the steps below.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/JordHemsworth/GameAPI](https://github.com/JordHemsworth/GameAPI)
+* [Github Project Link](https://github.com/JordHemsworth/GameAPI)
 
-Production Site: [http://35.173.49.241/]
+* [Production Site](http://35.173.49.241/)
 
-LinkedIn: [www.linkedin.com/in/jordanhemsworth](www.linkedin.com/in/jordanhemsworth)
+* [LinkedIn](www.linkedin.com/in/jordanhemsworth)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
