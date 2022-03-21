@@ -46,6 +46,7 @@
   <a href="http://35.173.49.241/">
     <img src="public/images/screenshot.jpg" alt="Logo" width="920" height="517">
   </a>
+    <p> Click to view site! </p>
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -174,21 +175,16 @@ To install the site locally, follow the steps below.
 
 3. Detailed other pages such as full games list with pagination. 
 
+4. Work on Livewire simultaneous requests.
+
 <!-- CONTACT -->
 ## Contact
+
+* [LinkedIn](https://www.linkedin.com/in/jordanhemsworth/)
 
 * [Github Project Link](https://github.com/JordHemsworth/GameAPI)
 
 * [Production Site](http://35.173.49.241/)
 
-* [LinkedIn](www.linkedin.com/in/jordanhemsworth)
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[linkedin-url]: https://www.linkedin.com/in/jordan-hemsworth-8a66bb175/
-[product-screenshot]: public\images\screenshot.jpg
