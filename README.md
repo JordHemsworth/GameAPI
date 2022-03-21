@@ -144,25 +144,30 @@ To install the site locally, follow the steps below.
    ```sh
    npm install
    ```
-5. Create .env file
+5. Create '.env' file
    ```sh   
    cp .env.example .env
    ```
-6. Generate app encryption key
+6. Remove debug bar by placing code in to '.env'
+    ```sh
+    DEBUGBAR_ENABLED=false           #Disable Livewire debug bar
+    ```
+7. Generate app encryption key
    ```php
    php artisan key:generate
    ```
-7. Enter your API details in to `.env` & remove debug bar.
+8. Enter your API details in to `services.php`.
    ```php
-   IGDB_KEY= Client ID                    #IGDB API Details
-   IGDB_AUTH="Bearer access_token"            
-
-   DEBUGBAR_ENABLED=false              #Disable Livewire debug bar
+      'igdb' => [
+        'Client-ID' => 'Client ID',
+        'Authorization' => 'Bearer access_token'
+      ],            
    ```  
-8. Run the application  
+9. Run the application  
    ```sh
    php artisan serve
-   ```   
+   ``` 
+10. Search your favourite games!  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
